@@ -32,6 +32,10 @@
     line-height: 1rem;
 }
 
+.product-row:hover .remove-item{
+    opacity: 1;
+}
+
 .cart-img{
     position: relative;
     width: 150px;
@@ -43,6 +47,23 @@
     height: 100%;
     border-radius: 10px;
     object-fit: cover;
+}
+
+
+
+.remove-item{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.505);
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    opacity: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .inc-dec-btn{
@@ -84,6 +105,8 @@
 .minus:hover{
     background-color: rgb(85, 76, 76);
 }
+
+
 
 .checkout{
     position: sticky;

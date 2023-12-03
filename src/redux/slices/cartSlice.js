@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+
 const initialState = {
     cartItems: [],
     cartItemsQuantity: 0,
@@ -17,6 +18,9 @@ const addCartSlice = createSlice(
                 );
                 if (itemIndex >= 0) {
                     state.cartItems[itemIndex].cartQuantity += 1
+                    // toast.info("Increased Product Quantity", {
+                    //     position:"bottom-left"
+                    // })
                 } else {                
                     const tempProduct = {...action.payload, cartQuantity: 1}
                     state.cartItems.push(tempProduct)
@@ -39,6 +43,10 @@ const addCartSlice = createSlice(
                     itemIndex.cartQuantity--
                 }
             },
+            removeItem(state,action) {
+                let selectedItem = state.cartItems.filter((item) => item.id !== action.payload.id);
+                state.cartItems = selectedItem
+            },
             cartTotalvalue(state, action) {
                 let { total, quantity } = state.cartItems.reduce((cartTotal, cartItem) => {
                     const { price, cartQuantity } = cartItem;
@@ -57,5 +65,5 @@ const addCartSlice = createSlice(
     }
 )
 
-export const { addToCart, cartItemIncrement, cartItemDecrement, cartTotalvalue } = addCartSlice.actions;
+export const { addToCart, cartItemIncrement, cartItemDecrement, cartTotalvalue, removeItem } = addCartSlice.actions;
 export default addCartSlice.reducer;

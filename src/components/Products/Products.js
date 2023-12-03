@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { allProducts } from '../../redux/slices'
 import {addToCart} from '../../redux/slices/cartSlice'
 import './Products.css'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Products() {
   const dispatch = useDispatch()
@@ -10,6 +12,17 @@ function Products() {
   console.log('Price', state)
   const handleCart = (product) => {
     dispatch(addToCart(product))
+    toast.success(product.title +'Added!', {
+      position: "bottom-left",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+      
   }
   useEffect(() => {
     dispatch(allProducts());
@@ -39,6 +52,7 @@ function Products() {
           })}
         </div>
       </div>
+      <ToastContainer/>
     </>
   )
 }
