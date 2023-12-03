@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { RxCross1 } from "react-icons/rx";
 import { FaPlus, FaMinus, FaRupeeSign, FaShoppingBag } from "react-icons/fa";
 import { useSelector } from "react-redux"
 import { useDispatch } from 'react-redux'
 import { cartItemIncrement } from '../../redux/slices/cartSlice';
 import { cartItemDecrement } from '../../redux/slices/cartSlice';
+import {cartTotalvalue} from '../../redux/slices/cartSlice'
 import emptyCart from '../../Images/empty-cart.svg'
 import './SideCart.css'
 
@@ -17,11 +18,13 @@ function SideCart() {
         dispatchAction(cartItemDecrement(product))
     }
     const selectedItems = useSelector((state) => state.cart)
-    console.log('Seleted Data', selectedItems.cartItems)
     const [sidebar, setSidebar] = useState(false)
     const handleSidebar = () => {
         setSidebar(!sidebar)
     }
+    useEffect(() => {
+        dispatchAction(cartTotalvalue())
+    },[selectedItems])
     return (
         <div>
             <div className="sidebar" onClick={() => handleSidebar()}>
@@ -76,9 +79,7 @@ function SideCart() {
                         </div>
                     })}
                     <div className={selectedItems.cartItems.length !== 0 ? "checkout" : "d-none"}>
-                        <h6>Checkout  Total: {selectedItems.cartItems.map((element, key) => {
-                            console.log( element.totalAmount  + "")
-                        }) }</h6>
+                        <h6>Checkout  Total: {selectedItems.cartTotalAmount }</h6>
                     </div>
                 </div>
             </div>
