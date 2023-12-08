@@ -1,8 +1,29 @@
-.card{
-    overflow: hidden;
+.card:hover{
+    transform: scale(1.04);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    transition: .3s linear all;
 }
-.card:hover img{
-    transform: scale(1.1);
-    z-index: 2;
-    transition: transform .2s linear;
+.card-body{
+    display: flex;
+    flex-direction: column;
+}
+.card-body .btns{
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    width: 100%;
+}
+.buy-now{
+    background-color: rgb(36, 34, 34);
+}
+/* .card-body button{
+    margin-top: auto;
+    display: inline-block;
+    align-self: flex-start;
+} */
+
+.cart{
+    cursor: pointer;
 }
