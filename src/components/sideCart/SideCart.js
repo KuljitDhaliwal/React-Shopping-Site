@@ -67,7 +67,7 @@ function SideCart() {
                             <div className="col-12">
                                 <div className="cart-card d-flex align-items-center justify-content-start">
                                     <div className="cart-img">
-                                        <img src={element.thumbnail} alt="..." />
+                                        <img src={element.image} alt="..." />
                                         <div className="remove-item">
                                             <RxCross1 onClick={()=>handleRemoveItem(element)} style={{color: '#ffffff', fontSize: '30px'}}/>
                                         </div>

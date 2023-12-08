@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice, combineReducers } from "@reduxjs/toolkit
 
 //Action
 export const allProducts = createAsyncThunk('allProductData', async () => {
-    const response = await fetch("https://dummyjson.com/products");
+    const response = await fetch("https://fakestoreapi.com/products");
     return response.json();
 })
 
-export const allData = createSlice({
+const allData = createSlice({
     name: "allProducts",
     initialState: {
         isLoading: false,

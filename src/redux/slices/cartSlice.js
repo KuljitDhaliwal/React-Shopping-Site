@@ -15,12 +15,10 @@ const addCartSlice = createSlice(
             addToCart(state, action) {
                 const itemIndex = state.cartItems.findIndex(
                     (item) => item.id === action.payload.id
-                );
+                ); 
+                console.log(itemIndex, 'Index Number')
                 if (itemIndex >= 0) {
                     state.cartItems[itemIndex].cartQuantity += 1
-                    // toast.info("Increased Product Quantity", {
-                    //     position:"bottom-left"
-                    // })
                 } else {                
                     const tempProduct = {...action.payload, cartQuantity: 1}
                     state.cartItems.push(tempProduct)
@@ -33,21 +31,21 @@ const addCartSlice = createSlice(
                 state.cartItems[itemIndex].cartQuantity += 1
             },
             cartItemDecrement(state, action) {
-                const itemIndex = state.cartItems.find(
+                const itemObject = state.cartItems.find(
                     (item) => item.id === action.payload.id
                 );
-                if (itemIndex.cartQuantity === 1) {
+                if (itemObject.cartQuantity === 1) {
                     state.cartItems = state.cartItems.filter((item) => item.id !== action.payload.id)
                     state.cartItemsQuantity--
                 } else {
-                    itemIndex.cartQuantity--
+                    itemObject.cartQuantity--
                 }
             },
             removeItem(state,action) {
                 let selectedItem = state.cartItems.filter((item) => item.id !== action.payload.id);
                 state.cartItems = selectedItem
             },
-            cartTotalvalue(state, action) {
+            cartTotalvalue(state) {
                 let { total, quantity } = state.cartItems.reduce((cartTotal, cartItem) => {
                     const { price, cartQuantity } = cartItem;
                     const itemTotal = price * cartQuantity;
